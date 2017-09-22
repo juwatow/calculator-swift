@@ -38,8 +38,6 @@ class ViewController: UIViewController {
             display.text = digit
             userIsInTheMiddleOfTyping = true
         }
-        
-        // If there is an operation, update next
     }
 
     // computed property
@@ -52,47 +50,20 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func performOperation(_ sender: UIButton) {
-        userIsInTheMiddleOfTyping = false
-        if let mathematicalSymbol = sender.currentTitle {
-            switch mathematicalSymbol {
-            case "C":
-                displayValue = 0
-                result = 0.0
-                operand = 0.0
-                operation = ""
-            case "+/-":
-                displayValue = -displayValue
-            case "%":
-                displayValue = displayValue / 100
-            case "÷", "x", "-", "+":
-                result = displayValue
-                operation = mathematicalSymbol
-            case "=":
-                operate()
-            default:
-                break
-            }
-        }
-    }
+    private var brain = CalculatorBrain()
     
-    func operate(){
-        operand = displayValue
-        switch operation {
-        case "÷":
-            result = result / operand
+    @IBAction func performOperation(_ sender: UIButton) {
+        if(userIsInTheMiddleOfTyping) {
+            brain.setOperand(displayValue)
+            userIsInTheMiddleOfTyping = false
+        }
+        
+        if let mathematicalSymbol = sender.currentTitle {
+            brain.performOperation(mathematicalSymbol)
+        }
+        
+        if let result = brain.result {
             displayValue = result
-        case "x":
-            result = result * operand
-            displayValue = result
-        case "-":
-            result = result - operand
-            displayValue = result
-        case "+":
-            result = result + operand
-            displayValue = result
-        default:
-            break
         }
     }
 }
