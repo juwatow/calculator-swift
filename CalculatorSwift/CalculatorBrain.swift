@@ -8,30 +8,6 @@
 
 import Foundation
 
-func changeSign(operand: Double) -> Double {
-    return -operand
-}
-
-func percentage(operand: Double) -> Double {
-    return operand / 100
-}
-
-func division(operand1: Double, operand2: Double) -> Double {
-    return operand1 / operand2
-}
-
-func addition(op1: Double, op2: Double) -> Double {
-    return op1 + op2
-}
-
-func soustraction(operand1: Double, operand2: Double) -> Double {
-    return operand1 - operand2
-}
-
-func multiply(operand1: Double, operand2: Double) -> Double {
-    return operand1 * operand2
-}
-
 struct CalculatorBrain {
     
     private var accumulator: Double?
@@ -45,12 +21,12 @@ struct CalculatorBrain {
     
     private var operations: Dictionary<String, Operation> = [
         "C" : Operation.constant(0),
-        "+/-" : Operation.unaryOperation(changeSign),
-        "%" : Operation.unaryOperation(percentage),
-        "÷" : Operation.binaryOperation(division),
-        "+" : Operation.binaryOperation(addition),
-        "-" : Operation.binaryOperation(soustraction),
-        "*" : Operation.binaryOperation(multiply),
+        "+/-" : Operation.unaryOperation({ -$0 }),
+        "%" : Operation.unaryOperation({ $0 / 100 }),
+        "÷" : Operation.binaryOperation({ $0 / $1 }),
+        "x" : Operation.binaryOperation({ $0 * $1 }),
+        "-" : Operation.binaryOperation({ $0 - $1 }),
+        "+" : Operation.binaryOperation({ $0 + $1 }),
         "=" : Operation.equals
     ]
     

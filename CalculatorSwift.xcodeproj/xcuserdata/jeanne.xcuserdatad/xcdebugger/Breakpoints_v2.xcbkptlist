@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalculatorSwift/CalculatorBrain.swift"
-            timestampString = "527737485.7575"
+            timestampString = "527745847.702969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "result"
             landmarkType = "24">
          </BreakpointContent>
